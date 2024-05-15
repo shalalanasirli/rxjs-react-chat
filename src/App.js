@@ -1,8 +1,13 @@
+import {Outlet} from "react-router-dom";
+import Switcher from "./components/Switcher";
 
 function App() {
-  return (
-    <div>App component</div>
-  );
+	return (
+		<div>
+			<Switcher />
+			<Outlet/>
+		</div>
+	);
 }
 
 export default App;
