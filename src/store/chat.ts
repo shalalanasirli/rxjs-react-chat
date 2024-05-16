@@ -1,8 +1,20 @@
 import {Subject} from "rxjs";
 
+type MessageType = {
+    person: string,
+    text: string
+}
+
+type StateType = {
+    status: string,
+    data: MessageType[],
+    newDataCount: number,
+    error: string
+}
+
 const subject = new Subject();
 
-const initialState = {
+const initialState: StateType = {
 	status: '',
 	data: [],
 	newDataCount: 0,
@@ -16,8 +28,8 @@ const chatStore = {
 		subject.next(state);
 		state = {...state, newDataCount: 0}
 	},
-	subscribe: setState => subject.subscribe(setState),
-	sendMessage: (m) => {
+	subscribe: (setState: any) => subject.subscribe(setState),
+	sendMessage: (m: MessageType) => {
 		state = {
 			...state,
 			data: [...state.data, m],
