@@ -1,26 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, Navigate, RouterProvider} from "react-router-dom";
 import FirstPerson from "./components/FirstPerson";
 import SecondPerson from "./components/SecondPerson";
 import "./styles.css";
+import NotFound from "./components/NotFound.tsx";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <App/>,
+        errorElement: <NotFound/>,
 		children: [
+            { index: true, element: <Navigate to={"/first-person"} replace/>},
 			{
-				path: "/first-person",
+                // index: true,
+				path: "first-person",
 				element: <FirstPerson/>
 			},
 			{
-				path: "/",
-				element: <FirstPerson/>
-			},
-			{
-				path: "/second-person",
+				path: "second-person",
 				element: <SecondPerson/>
 			}
 		]
